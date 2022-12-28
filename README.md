@@ -1,24 +1,28 @@
-# README
+# Chee Exercise!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+一人での運動の習慣化を応援するアプリケーション
 
-Things you may want to cover:
+### テーマを選んだ理由
+前職でフィットネスジムのコーチをしていましたが、コロナ以降ジムに行きたくても行けない方や、一人で運動を始めようとする方が増えました。ただ一人で運動するうえで一番困難なことが継続するということでした。コーチとして運動習慣を身につけてもらうために電話やお手紙などでサポートをしていましたが、とても時間と人を必要とするサポートでした。そこで運動習慣を一人でも身につけられるようなアプリケーションを作ってみたいと思い制作することにしました。
 
-* Ruby version
+### ターゲットユーザ
+今まで一人で運動を始めて続かなかった方
 
-* System dependencies
+### 主な利用シーン
+自分で決めた運動を達成した時や、同じ運動仲間からやる気をもらいたいとき
 
-* Configuration
+## 設計書
 
-* Database creation
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
