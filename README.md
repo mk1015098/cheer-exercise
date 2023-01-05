@@ -1,4 +1,4 @@
-# Chee Exercise!
+# Cheer Exercise!
 
 ## サイト概要
 ### サイトテーマ
