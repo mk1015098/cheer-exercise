@@ -29,4 +29,5 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中です
+- ロゴデザイン『Canva』 https://www.canva.com
+- アイコンデザイン 『Font Awesome』 https://fontawesome.com
