@@ -1,2 +1,18 @@
-<h1>User::Users#show</h1>
-<p>Find me in app/views/user/users/show.html.erb</p>
+<!-- ユーザーの詳細 -->
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_image(100,100) %>
+  <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_user_path %></p>
+  <% end %>
+</div>
+
+<!-- ユーザーの投稿一覧 -->
+
+<% @posts.each do |posts| %>
+  <div>
+    <p>投稿ユーザー画像：<%= image_tag posts.user.get_image(100,100) %></p>
+    <p>ユーザーネーム：<%= posts.user.name %></p>
+    <p>投稿文：<%= posts.user.post %></p>
+  </div>
+<% end %>
