@@ -8,13 +8,14 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :posts, only: [:index, :show, :destroy]
     resources :users, only: [:index, :show, :destroy]
-    resources :post_comments, only: [:show, :destroy]
+    resources :post_comments, only: [:create, :destroy]
   end
 
   namespace :user do
     resources :users, only: [:index, :show, :edit, :update, :destroy]
-    resources :posts, only: [:index, :show, :create, :new, :edit, :update, :destroy]
-    resources :post_comments, only: [:new, :create, :destroy]
+    resources :posts, only: [:index, :show, :create, :new, :edit, :update, :destroy] do
+      resources :post_comments, only: [:new, :create, :destroy]
+    end
   end
 
 end

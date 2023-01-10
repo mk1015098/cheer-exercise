@@ -3,11 +3,14 @@ class User::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @posts = Post.new
+    @user = @post.user
+    @post_comment = PostComment.new
   end
 
   def index
     @posts = Post.all
     @post = Post.new
+    @user = current_user
   end
 
   def new
@@ -18,7 +21,7 @@ class User::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-    redirect_to user_post_path(current_user)
+    redirect_to user_post_path(@post)
     else
       render :new
     end
@@ -29,9 +32,15 @@ class User::PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    redirect_to user_post_path(@post)
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to user_posts_path
   end
 
   private
