@@ -2,7 +2,7 @@
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_image, size:"10×10" %>
-  <% if @user == current_user %>
+  <% if @user.name != "guestuser" %>
     <p><%= link_to "プロフィール編集", edit_user_user_path %></p>
   <% end %>
 </div>
@@ -11,7 +11,7 @@
 
 <% @posts.each do |posts| %>
   <div>
-    <p>投稿ユーザー画像：<%= image_tag posts.user.get_image, size:"100,100" %></p>
+    <p>投稿ユーザー画像：<%= image_tag posts.user.get_image, size:"10×10" %></p>
     <p>ユーザーネーム：<%= posts.user.name %></p>
     <p>投稿文：<%= posts.body %></p>
     <p><%= link_to "#{@post.post_comments.count} コメント", user_post_path(@posts) %></p

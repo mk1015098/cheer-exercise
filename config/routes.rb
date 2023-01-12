@@ -12,10 +12,16 @@ Rails.application.routes.draw do
   end
 
   namespace :user do
+    get "search" => "searches#search"
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :create, :new, :edit, :update, :destroy] do
       resources :post_comments, only: [:new, :create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
+  end
+
+  devise_scope :user do
+    post 'user/guest_sign_in', to: 'user/sessions#guest_sign_in'
   end
 
 end

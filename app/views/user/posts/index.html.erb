@@ -1,8 +1,14 @@
 <h1>投稿一覧</h1>
-<% @posts.each do |posts| %>
-  <%= link_to user_user_path(posts.user) do %>
-    <%= image_tag posts.user.get_image, size:"10×10" %>
-  <% end %>
-  <p>投稿：<%= link_to posts.body, user_post_path(posts.id) %></p>
-  <p><%= link_to "#{@post.post_comments.count} コメント", user_post_path(@posts) %></p>
-<% end %>
+<%= render 'user/posts/search', posts: @posts %>
+<table class='table table-inverse'>
+  <tbody>
+    <% @posts.each do |posts| %>
+      <tr>
+        <td><%= image_tag posts.user.get_image, size:"10×10" %></td>
+        <td><%= link_to posts.user.name,user_user_path(posts.user) %></td>
+        <td>投稿：<%= link_to posts.body, user_post_path(posts.id) %></td>
+        <td><%= link_to "#{@post.post_comments.count} コメント", user_post_path(@posts) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
