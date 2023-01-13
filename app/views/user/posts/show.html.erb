@@ -4,6 +4,12 @@
     <td><%= @post.body %></td>
     <%= link_to "編集", edit_user_post_path(@post.id) %>
     <%= link_to "削除", user_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    
+    <td>
+      <% @post_tags.each do |tag| %>
+        <%=tag.name%><%="(#{tag.posts.count})" %>
+      <% end %>
+    </td>
 
     <td>
       <% if @post.favorited?(current_user) %>
