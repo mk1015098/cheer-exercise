@@ -17,6 +17,16 @@
             <li class="m-3">
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'text-dark align-middle' %>
             </li>
+          <% elsif admin_signed_in? %>
+            <li class="m-3">
+              <%= link_to "Users", admin_users_path, class: 'text-dark align-middle' %>
+            </li>
+            <li class="m-3">
+              <%= link_to "Posts", admin_posts_path, class: 'text-dark align-middle' %>
+            </li>
+            <li class="m-3">
+              <%= link_to "Log out", destroy_admin_session_path, method: :delete, class: 'text-dark align-middle' %>
+            </li>
           <% else %>
             <li class="m-3">
               <%= link_to "About", home_about_path, class: 'text-dark align-middle' %>

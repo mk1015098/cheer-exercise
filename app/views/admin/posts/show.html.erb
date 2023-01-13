@@ -1,2 +1,24 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<h1>投稿詳細</h1>
+<table class='table'>
+  <tr>
+    <td><%= @post.body %></td>
+    <%= link_to "削除", user_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <td>
+      <% @post_tags.each do |tag| %>
+        <%=tag.name%><%="(#{tag.posts.count})" %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<div>
+  <p>コメント件数：<%= @post.post_comments.count %></p>
+  <% @post.post_comments.each do |post_comment| %>
+    <%= image_tag post_comment.user.get_image, size:"10×10" %>
+    <%= link_to post_comment.user.name, user_user_path(@user.id) %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <% if post_comment.user == current_user %>
+      <%= link_to "削除", user_post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
