@@ -8,7 +8,7 @@
         <td><%= link_to posts.user.name,user_user_path(posts.user) %></td>
         <td>投稿：<%= link_to posts.body, user_post_path(posts.id) %></td>
         <td><i class="fas fa-tag"></i><%= posts.tags.map(&:name).join(', ') %></td>
-        <td><%= link_to "#{@post.post_comments.count} コメント", user_post_path(@posts) %></td>
+        <td><%= link_to "#{@post.post_comments.count} コメント", user_post_path(posts) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -3,6 +3,7 @@
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_image, size:"10×10" %>
 </div>
+<%= link_to "ユーザーを削除する", admin_user_path(@user.id), method: :delete, "data-confirm" => "本当にこのユーザーを削除しますか？" %>
 
 <!-- ユーザーの投稿一覧 -->
 
@@ -11,6 +12,6 @@
     <p>投稿ユーザー画像：<%= image_tag posts.user.get_image, size:"10×10" %></p>
     <p>ユーザーネーム：<%= posts.user.name %></p>
     <p>投稿文：<%= posts.body %></p>
-    <p><%= link_to "#{@post.post_comments.count} コメント", user_post_path(@posts) %></p>
+    <p><%= link_to "#{@post.post_comments.count} コメント", admin_post_path(posts) %></p>
   </div>
 <% end %>
