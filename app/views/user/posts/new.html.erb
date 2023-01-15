@@ -1,14 +1,15 @@
 <h1>マイページ</h1>
+<p><%=link_to"お気に入り記事", favorites_user_post_path(@user) %></p>
 
 <h1>新規投稿</h1>
 <%= form_with model: @post, url: user_posts_path(@post), method: :post, local:true do |f| %>
 
   <h4>本文</h4>
   <%= f.text_area :body %>
-  
+
   <div class="field">
     <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
-    <%= f.text_field :name,value: @tag_list, class:"form-control"%>
+    <%= f.text_field :name,value: @tag_list %>
   </div>
 
   <%= f.submit '投稿' %>

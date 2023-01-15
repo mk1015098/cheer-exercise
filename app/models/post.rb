@@ -9,12 +9,14 @@ class Post < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
-  def self.looks(search, word)
-    if search == "partial_match"
-      @post = Post.where("body LIKE?","%#{word}%")
-    else
-      @post = Post.all
-    end
+  def self.post_looks(word)
+      Post.where("body LIKE ?", "%#{word}%")
+  end
+
+  def self.tag_looks(word)
+    tags = Tag.where("name LIKE ?", "%#{word}%")
+    post_tags = PostTag.where(tag_id: tags.ids).pluck(:post_id)
+    Post.where(id: post_tags)
   end
 
   def save_tag(sent_tags)

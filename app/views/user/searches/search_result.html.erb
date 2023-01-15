@@ -6,7 +6,11 @@
       <tr>
         <td><%= post.user.name %></td>
         <td><%= post.body %></td>
-        <td><%= post.tags %></td>
+        <td>
+          <% post.tags.each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

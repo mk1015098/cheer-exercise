@@ -2,12 +2,11 @@ class User::SearchesController < ApplicationController
   before_action :authenticate_user!
 
   def search
-    @posts = Post.where("tag LIKE?","%#{@word}%")
-    @range = params[:range]
-    if @range == "User"
-      @posts = Post.looks(params[:search], params[:word])
+    if params[:tag_search]
+      @posts = Post.tag_looks(params[:word])
+    else
+      @posts = Post.post_looks(params[:word])
     end
-    @posts = Post.looks(params[:search], params[:word])
     render "user/searches/search_result"
   end
 end

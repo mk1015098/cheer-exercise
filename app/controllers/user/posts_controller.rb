@@ -17,6 +17,7 @@ class User::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @user = current_user
   end
 
   def create
@@ -38,17 +39,16 @@ class User::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @tag_list = @post.tags.pluck(:name).join(',')
-    if @post.update(post_params)
-      if params[:post][:status]
+    tag_list = post_params[:name].split("，")
+    post_atributes = post_params
+    post_atributes.delete(:name)
+    if @post.update(post_atributes)
         @old_relations = PostTag.where(post_id: @post.id)
         @old_relations.each do |relation|
           relation.delete
         end
         @post.save_tag(tag_list)
-        redirect_to user_post_path(@post)
-      else redirect_to user_posts_path
-      end
+        redirect_to user_posts_path
     else render :edit
     end
   end
@@ -68,6 +68,6 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body, :tag)
+    params.require(:post).permit(:body, :tag, :name)
   end
 end
