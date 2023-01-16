@@ -18,7 +18,7 @@ class User::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to user_user_path(@user)
+    redirect_to new_user_post_path(@user)
   end
 
   def destroy

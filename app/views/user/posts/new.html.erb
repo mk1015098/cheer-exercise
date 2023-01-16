@@ -1,20 +1,32 @@
-<h1>マイページ</h1>
-<p><%=link_to"お気に入り記事", favorites_user_post_path(@user) %></p>
+<div class='container px-5 px-md-0'>
+  <div class='row'>
+    <div class='col-md-4'>
+      <h3>My page</h3><br>
+      <div class='h5'>
+        <p><%= image_tag current_user.get_image, size:"200x200" %></p>
+        <p>User Name：<%= current_user.name %></p>
+        <p>Introduction：<%= current_user.introduction %></p>
+      </div>
 
-<h1>新規投稿</h1>
-<%= form_with model: @post, url: user_posts_path(@post), method: :post, local:true do |f| %>
+      <p><i class="fas fa-pencil-alt"></i><%=link_to"User Edit", edit_user_user_path(@user) %></p>
+      <p><i class="fas fa-thumbs-up"></i><%=link_to"Nice! List", favorites_user_post_path(@user) %></p>
 
-  <h4>本文</h4>
-  <%= f.text_area :body %>
+      <h4>New Post</h4>
+      <div class="form-group">
+        <%= form_with model: @post, url: user_posts_path(@post), method: :post, local:true do |f| %>
+        <label>Post</label><br>
+        <%= f.text_area :body, class:"form-control" %><br>
+        <label>Tag（,）で区切ると複数のタグを登録できます</label><br>
+        <%= f.text_field :name, value: @tag_list, class:"form-control" %>
+      </div>
+        <%= f.submit 'Create', class: 'btn btn-primary' %>
+        <% end %>
+    </div>
 
-  <div class="field">
-    <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
-    <%= f.text_field :name,value: @tag_list %>
+    <div class='col-md-8'>
+      <%= month_calendar do |date| %>
+        <%= date.day %>
+      <% end %>
+    </div>
   </div>
-
-  <%= f.submit '投稿' %>
-<% end %>
-
-<%= month_calendar do |date| %>
-  <%= date.day %>
-<% end %>
+</div>

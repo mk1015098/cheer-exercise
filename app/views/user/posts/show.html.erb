@@ -1,48 +1,54 @@
-<h1>投稿詳細</h1>
-<table class='table'>
-  <tr>
-    <td><%= @post.body %></td>
-    <%= link_to "編集", edit_user_post_path(@post.id) %>
-    <%= link_to "削除", user_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<div class='container px-5 px-md-0'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <h3>Post Details</h3>
+      <table class='table'>
+        <tr>
+          <td><%= @post.body %></td>
+          <td><i class="fas fa-pencil-alt"></i> <%= link_to "Edit", edit_user_post_path(@post.id) %></td>
+          <td><i class="fas fa-trash-alt"></i> <%= link_to "Delete", user_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
 
-    <td>
-      <% @post_tags.each do |tag| %>
-        <i class="fas fa-tag"></i><%=tag.name%><%="(#{tag.posts.count})" %>
-      <% end %>
-    </td>
+          <td>
+            <% @post_tags.each do |tag| %>
+              <i class="fas fa-tag"></i> <%=tag.name%><%="(#{tag.posts.count})" %>
+            <% end %>
+          </td>
 
-    <td>
-      <% if @post.favorited?(current_user) %>
-        <p>
-          <%= link_to user_post_favorites_path(@post.id), method: :delete do %>
-            <i class="fas fa-thumbs-up"></i><%= @post.favorites.count %> Nice!
+          <td>
+            <% if @post.favorited?(current_user) %>
+              <p>
+                <%= link_to user_post_favorites_path(@post.id), method: :delete do %>
+                  <i class="fas fa-thumbs-up"></i><%= @post.favorites.count %> Nice!
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <%= link_to user_post_favorites_path(@post.id), method: :post do %>
+                  <i class="far fa-thumbs-up"></i><%= @post.favorites.count %> Nice!
+                <% end %>
+              </p>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        <p><i class="fas fa-comments"></i><%= @post.post_comments.count %></p>
+        <% @post.post_comments.each do |post_comment| %>
+          <%= image_tag post_comment.user.get_image, size:"10×10" %>
+          <%= link_to post_comment.user.name, user_user_path(@user.id) %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", user_post_post_comment_path(post_comment.post, post_comment), method: :delete %>
           <% end %>
-        </p>
-        <% else %>
-        <p>
-          <%= link_to user_post_favorites_path(@post.id), method: :post do %>
-            <i class="far fa-thumbs-up"></i><%= @post.favorites.count %> Nice!
-          <% end %>
-        </p>
-      <% end %>
-    </td>
-  </tr>
-</table>
-
-<div>
-  <p>コメント件数：<%= @post.post_comments.count %></p>
-  <% @post.post_comments.each do |post_comment| %>
-    <%= image_tag post_comment.user.get_image, size:"10×10" %>
-    <%= link_to post_comment.user.name, user_user_path(@user.id) %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-    <% if post_comment.user == current_user %>
-      <%= link_to "削除", user_post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
-</div>
-<div>
-  <%= form_with model: [@post, @post_comment], url: user_post_post_comments_path(@post) do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model: [@post, @post_comment], url: user_post_post_comments_path(@post) do |f| %>
+          <%= f.text_area :comment, placeholder: "コメント", class:"form-control" %>
+          <%= f.submit "send button", class: 'btn btn-primary mt-3' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

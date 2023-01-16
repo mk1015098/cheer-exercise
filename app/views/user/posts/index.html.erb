@@ -1,15 +1,21 @@
-<h1>投稿一覧</h1>
-<%= render 'user/posts/search', posts: @posts %>
-<table class='table table-inverse'>
-  <tbody>
-    <% @posts.each do |posts| %>
-      <tr>
-        <td><%= image_tag posts.user.get_image, size:"10×10" %></td>
-        <td><%= link_to posts.user.name,user_user_path(posts.user) %></td>
-        <td>投稿：<%= link_to posts.body, user_post_path(posts.id) %></td>
-        <td><i class="fas fa-tag"></i><%= posts.tags.map(&:name).join(', ') %></td>
-        <td><%= link_to "#{@post.post_comments.count} コメント", user_post_path(posts) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class='container px-5 px-md-0'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <h3>Posts List</h3>
+      <%= render 'user/posts/search', posts: @posts %>
+      <table class='table table-inverse'>
+        <tbody>
+          <% @posts.each do |posts| %>
+            <tr>
+              <td><%= image_tag posts.user.get_image, size:"10×10" %></td>
+              <td><%= link_to posts.user.name,user_user_path(posts.user) %></td>
+              <td><%= link_to posts.body, user_post_path(posts.id) %></td>
+              <td><i class="fas fa-tag"></i> <%= posts.tags.map(&:name).join(', ') %></td>
+              <td><i class="fas fa-comments"></i> <%= link_to "#{@post.post_comments.count}", user_post_path(posts) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

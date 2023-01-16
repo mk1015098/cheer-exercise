@@ -21,7 +21,7 @@ class User::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(body: post_params[:body])
     @post.user_id = current_user.id
     @tag_list = params[:post][:name].split(',')
     if @post.save

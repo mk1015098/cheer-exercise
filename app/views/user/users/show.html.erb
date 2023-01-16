@@ -1,19 +1,29 @@
-<!-- ユーザーの詳細 -->
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_image, size:"10×10" %>
-  <% if @user.name != "guestuser" %>
-    <p><%= link_to "プロフィール編集", edit_user_user_path %></p>
-  <% end %>
-</div>
+<div class='container px-5 px-md-0'>
+  <div class='row'>
+    <div class='col-md-4'>
+      <h3>User Details</h3>
+      <div>
+        <p class='h4'>Name：<%= @user.name %></p>
+        <p><%= image_tag @user.get_image, size:"200x200" %></p>
+        <% if @user.name != "guestuser" %>
+          <p><i class="fas fa-pencil-alt"></i><%= link_to "User Edit", edit_user_user_path %></p>
+        <% end %>
+      </div>
+    </div>
 
-<!-- ユーザーの投稿一覧 -->
 
-<% @posts.each do |posts| %>
-  <div>
-    <p>投稿ユーザー画像：<%= image_tag posts.user.get_image, size:"10×10" %></p>
-    <p>ユーザーネーム：<%= posts.user.name %></p>
-    <p>投稿文：<%= posts.body %></p>
-    <p><%= link_to "#{@post.post_comments.count} コメント", user_post_path(posts) %></p>
+    <div class='col-md-8'>
+      <h3>User Posts</h3>
+      <table class='table table-inverse'>
+        <tbody>
+          <% @posts.each do |posts| %>
+          <tr>
+            <td><%= posts.body %></td>
+            <td><i class="fas fa-comments"></i> <%= link_to "#{@post.post_comments.count}", user_post_path(posts) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-<% end %>
+</div>
