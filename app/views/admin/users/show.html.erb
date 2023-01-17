@@ -1,17 +1,29 @@
-<!-- ユーザーの詳細 -->
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_image, size:"10×10" %>
-</div>
-<%= link_to "ユーザーを削除する", admin_user_path(@user.id), method: :delete, "data-confirm" => "本当にこのユーザーを削除しますか？" %>
+<div class='container px-5 px-md-0'>
+  <div class='row'>
+    <div class='col-md-4'>
+      <h3>User Details</h3>
+      <div>
+        <p><%= image_tag @user.get_image, size:"200x200" %></p>
+        <p class='h4'>Name：<%= @user.name %></p>
+        <p><%= @user.introduction %></p>
+        <%= link_to "ユーザーを削除する", admin_user_path(@user.id), method: :delete, "data-confirm" => "本当にこのユーザーを削除しますか？" %>
+      </div>
+    </div>
 
-<!-- ユーザーの投稿一覧 -->
-
-<% @posts.each do |posts| %>
-  <div>
-    <p>投稿ユーザー画像：<%= image_tag posts.user.get_image, size:"10×10" %></p>
-    <p>ユーザーネーム：<%= posts.user.name %></p>
-    <p>投稿文：<%= posts.body %></p>
-    <p><%= link_to "#{@post.post_comments.count} コメント", admin_post_path(posts) %></p>
+    <div class='col-md-8'>
+      <h3>User Posts</h3>
+      <table class='table table-inverse'>
+        <tbody>
+          <% @posts.each do |posts| %>
+          <tr>
+            <td><%= link_to posts.body, admin_post_path(posts.id) %></td>
+            <td><i class="fas fa-comments"></i> <%= link_to "#{@post.post_comments.count}", admin_post_path(posts) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-<% end %>
+</div>
+
+
