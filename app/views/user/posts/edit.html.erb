@@ -1,14 +1,17 @@
-<h1>編集画面</h1>
-
-<%= form_with model: @post, url: user_post_path, method: :patch do |f| %>
-
-  <h4>投稿</h4>
-  <%= f.text_area :body %>
-  <div class="field">
-    <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
-    <%= f.text_field :name,value: @tag_list,class:"form-control"%>
+<div class='container px-5 px-md-0'>
+  <div class='row'>
+    <div class='col-xs-4'>
+      <h3>Post Edit</h3>
+      <div class="form-group">
+        <%= form_with model: @post, url: user_post_path, method: :patch do |f| %>
+          <%= render 'layouts/error_messages', model: @post %>
+          <label for="inputBody">Post</label><br>
+          <%= f.text_area :body, autofocus: true, id:"inputBody", class:"form-control" %><br>
+          <label for="inputName">Tag(,で区切ると複数タグ登録できます)</label><br>
+          <%= f.text_field :name, autofocus: true, id:"inputName", class:"form-control" %><br>
+          <%= f.submit 'Update', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <%= f.submit '保存' %>
-
-<% end %>
+</div>

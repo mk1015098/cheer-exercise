@@ -2,7 +2,7 @@ class User::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @posts = Post.new
+    @posts = Post.all
     @post_tags = @post.tags
     @user = @post.user
     @post_comment = PostComment.new
@@ -17,16 +17,18 @@ class User::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @posts = Post.all
     @user = current_user
   end
 
   def create
     @post = Post.new(body: post_params[:body])
     @post.user_id = current_user.id
+    @post.start_time = Date.today
     @tag_list = params[:post][:name].split(',')
     if @post.save
       @post.save_tag(@tag_list)
-    redirect_to user_post_path(@post)
+      redirect_to user_posts_path(@post), notice:"Post success!"
     else
       render :new
     end
@@ -48,7 +50,7 @@ class User::PostsController < ApplicationController
           relation.delete
         end
         @post.save_tag(tag_list)
-        redirect_to user_posts_path
+        redirect_to user_posts_path, notice:"Successful edit!"
     else render :edit
     end
   end

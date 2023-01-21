@@ -8,10 +8,11 @@
         <p>Introduction：<%= current_user.introduction %></p>
       </div>
 
-      <p><i class="fas fa-pencil-alt"></i><%=link_to"User Edit", edit_user_user_path(@user) %></p>
-      <p><i class="fas fa-thumbs-up"></i><%=link_to"Nice! List", favorites_user_post_path(@user) %></p>
+      <p><i class="fas fa-pencil-alt"></i><%=link_to"User Edit", edit_user_user_path(current_user) %></p>
+      <p><i class="fas fa-thumbs-up"></i><%=link_to"Nice! List", favorites_user_post_path(current_user) %></p>
 
       <h4>New Post</h4>
+      <%= render 'layouts/error_messages', model: @post %>
       <div class="form-group">
         <%= form_with model: @post, url: user_posts_path(@post), method: :post, local:true do |f| %>
         <label>Post</label><br>
@@ -24,9 +25,15 @@
     </div>
 
     <div class='col-md-8'>
-      <%= month_calendar do |date| %>
+      <%= month_calendar  events: @posts do |date,posts| %>
         <%= date.day %>
-        <i class="fas fa-hand-peace"></i>
+
+        <% posts.each do |post| %>
+          <% if post.body.present? %>
+            <i class="fas fa-hand-peace"></i>
+          <% end %>
+        <% end %>
+
       <% end %>
     </div>
   </div>

@@ -3,6 +3,11 @@
     <div class='col-md-12'>
       <h3>Posts List</h3>
       <%= render 'user/posts/search', posts: @posts %>
+      <% if flash[:notice] %>
+       <div class="alert alert-success" role="alert">
+          <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p>
+        </div>
+      <% end %>
       <table class='table table-inverse'>
         <tbody>
           <% @posts.each do |posts| %>
