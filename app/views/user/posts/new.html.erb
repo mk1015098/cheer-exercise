@@ -5,11 +5,14 @@
       <div class='h5'>
         <p><%= image_tag current_user.get_image, size:"200x200" %></p>
         <p>User Name：<%= current_user.name %></p>
-        <p>Introduction：<%= current_user.introduction %></p>
+        <p>Message：<%= current_user.introduction %></p>
       </div>
-
-      <p><i class="fas fa-pencil-alt"></i><%=link_to"User Edit", edit_user_user_path(current_user) %></p>
-      <p><i class="fas fa-thumbs-up"></i><%=link_to"Nice! List", favorites_user_post_path(current_user) %></p>
+      <% if @user.name != "guestuser" %>
+      <div>
+        <i class="fas fa-pencil-alt"></i><%=link_to"User Edit", edit_user_user_path(current_user) %><br>
+        <i class="fas fa-thumbs-up"></i><%=link_to"Nice! List", favorites_user_post_path(current_user) %>
+      </div>
+      <% end %>
 
       <h4>New Post</h4>
       <%= render 'layouts/error_messages', model: @post %>
@@ -30,7 +33,9 @@
 
         <% posts.each do |post| %>
           <% if post.body.present? %>
-            <i class="fas fa-hand-peace"></i>
+            <div>
+              <i class="fas fa-hand-peace" style="color: orange;"></i>
+            </div>
           <% end %>
         <% end %>
 

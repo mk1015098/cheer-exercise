@@ -1,14 +1,15 @@
 class User::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page])
     @post = Post.new
   end
 
   def index
-    @users = User.all
+    @users = User.page(params[:page])
   end
 
   def edit
@@ -42,7 +43,7 @@ class User::UsersController < ApplicationController
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.name == "guestuser"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to user_user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
 end
