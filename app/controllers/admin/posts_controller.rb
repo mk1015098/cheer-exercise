@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    @post = Post.new
+    @post = Post.find(params[:id])
   end
 
   def show
