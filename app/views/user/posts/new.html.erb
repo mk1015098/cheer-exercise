@@ -3,6 +3,11 @@
     <div class='col-md-4'>
       <h3>My page</h3><br>
       <div class='h5'>
+        <% if flash[:notice] %>
+          <div class="alert alert-success" role="alert">
+            <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p>
+          </div>
+        <% end %>
         <p><%= image_tag current_user.get_image, size:"200x200" %></p>
         <p>User Name：<%= current_user.name %></p>
         <p>Message：<%= current_user.introduction %></p>
