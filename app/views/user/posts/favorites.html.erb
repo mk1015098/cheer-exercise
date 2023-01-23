@@ -1,13 +1,13 @@
 <div class='container px-5 px-md-0'>
   <div class='row'>
     <div class='col-md-12'>
-      <h3>Nice! List</h3>
+      <h1 style= "font-family: fantasy">Nice! List</h1>
         <table class='table table-inverse'>
           <tbody>
             <% @favorite_posts.each do |post|%>
               <tr>
                 <td><%= image_tag post.user.get_image, size:"100x100" %></td>
-                <td><%= link_to favorite_posts.user.name, user_user_path(post.user) %></td>
+                <td><%= link_to post.user.name, user_user_path(post.user) %></td>
                 <td><%= link_to post.body, user_post_path(post.id) %></td>
                 <td><i class="fas fa-tag"></i> <%= post.tags.map(&:name).join(', ') %></td>
               </tr>

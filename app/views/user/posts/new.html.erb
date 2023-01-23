@@ -1,7 +1,7 @@
 <div class='container px-5 px-md-0'>
   <div class='row'>
     <div class='col-md-4'>
-      <h3>My page</h3><br>
+      <h1 style= "font-family: fantasy">My page</h1><br>
       <div class='h5'>
         <% if flash[:notice] %>
           <div class="alert alert-success" role="alert">
@@ -19,7 +19,7 @@
       </div>
       <% end %>
 
-      <h4>New Post</h4>
+      <br><h4 style= "font-family: fantasy">New Post</h4>
       <%= render 'layouts/error_messages', model: @post %>
       <div class="form-group">
         <%= form_with model: @post, url: user_posts_path(@post), method: :post, local:true do |f| %>

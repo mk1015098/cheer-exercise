@@ -1,7 +1,7 @@
 <div class='container px-5 px-md-0'>
   <div class='row'>
     <div class='col-xs-4'>
-      <h3>Post Edit</h3>
+      <h1 style= "font-family: fantasy">Post Edit</h1>
       <div class="form-group">
         <%= form_with model: @post, url: user_post_path, method: :patch do |f| %>
           <%= render 'layouts/error_messages', model: @post %>

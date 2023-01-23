@@ -3,7 +3,7 @@
     <div class="container">
       <a class="navbar-brand" href="/"><span><%= image_tag "CheerExercise.jpg", size:"100x100" %></span></a>
 
-        <ul class="navbar-nav m-3">
+        <ul class="navbar-nav m-3 h5" style= "font-family: fantasy">
           <% if user_signed_in? %>
             <li class="m-3">
               <%= link_to "My page", new_user_post_path(current_user), class: 'text-dark align-middle' %>
