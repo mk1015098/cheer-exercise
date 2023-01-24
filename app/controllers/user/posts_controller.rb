@@ -17,8 +17,8 @@ class User::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @posts = Post.all
     @user = current_user
+    @posts = @user.posts
   end
 
   def create

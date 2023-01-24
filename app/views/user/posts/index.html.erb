@@ -2,12 +2,15 @@
   <div class='row'>
     <div class='col-md-12'>
       <h1 style= "font-family: fantasy">Posts List</h1>
+
       <%= render 'user/posts/search', posts: @posts %>
+
       <% if flash[:notice] %>
        <div class="alert alert-success" role="alert">
           <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p>
         </div>
       <% end %>
+
       <table class='table table-inverse'>
         <tbody>
           <% @posts.each do |posts| %>
@@ -16,21 +19,23 @@
               <td><%= link_to posts.user.name, user_user_path(posts.user) %></td>
               <td><%= link_to posts.body, user_post_path(posts.id) %></td>
               <td><i class="fas fa-tag"></i> <%= posts.tags.map(&:name).join(', ') %></td>
+
               <td>
                 <% if @post.favorited?(current_user) %>
               <p>
-                <%= link_to user_post_favorites_path(posts.id), method: :delete do %>
-                  <i class="fas fa-thumbs-up"></i><%= posts.favorites.count %> Nice!
+                <%= link_to user_post_favorites_path(@post.id), method: :delete, remote: true do %>
+                  <i class="fas fa-thumbs-up"></i><%= @post.favorites.count %> Nice!
                 <% end %>
               </p>
                 <% else %>
               <p>
-                <%= link_to user_post_favorites_path(posts.id), method: :post do %>
-                  <i class="far fa-thumbs-up"></i><%= posts.favorites.count %> Nice!
+                <%= link_to user_post_favorites_path(posts), method: :post, remote: true do %>
+                  <i class="far fa-thumbs-up"></i><%= @post.favorites.count %> Nice!
                 <% end %>
               </p>
                 <% end %>
-            </td>
+              </td>
+
               <td><i class="fas fa-comments"></i> <%= link_to "#{@post.post_comments.count}", user_post_path(posts) %></td>
             </tr>
           <% end %>

@@ -37,7 +37,6 @@
       <mark>一日一回運動後に投稿した日はアイコンが表示されます！</mark>
       <%= month_calendar  events: @posts do |date,posts| %>
         <%= date.day %>
-
         <% posts.each do |post| %>
           <% if post.body.present? %>
             <div>
@@ -45,7 +44,6 @@
             </div>
           <% end %>
         <% end %>
-
       <% end %>
     </div>
   </div>

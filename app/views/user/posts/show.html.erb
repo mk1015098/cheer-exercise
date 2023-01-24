@@ -14,21 +14,10 @@
             <% end %>
           </td>
 
-          <td>
-            <% if @post.favorited?(current_user) %>
-              <p>
-                <%= link_to user_post_favorites_path(@post.id), method: :delete do %>
-                  <i class="fas fa-thumbs-up"></i><%= @post.favorites.count %> Nice!
-                <% end %>
-              </p>
-              <% else %>
-              <p>
-                <%= link_to user_post_favorites_path(@post.id), method: :post do %>
-                  <i class="far fa-thumbs-up"></i><%= @post.favorites.count %> Nice!
-                <% end %>
-              </p>
-            <% end %>
+          <td id="favorite_buttons_<%= @post.id%>">
+            <%= render "user/favorites/favorite", post: @post %>
           </td>
+
         </tr>
       </table>
 
