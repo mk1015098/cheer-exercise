@@ -20,20 +20,8 @@
               <td><%= link_to posts.body, user_post_path(posts.id) %></td>
               <td><i class="fas fa-tag"></i> <%= posts.tags.map(&:name).join(', ') %></td>
 
-              <td>
-                <% if @post.favorited?(current_user) %>
-              <p>
-                <%= link_to user_post_favorites_path(@post.id), method: :delete, remote: true do %>
-                  <i class="fas fa-thumbs-up"></i><%= @post.favorites.count %> Nice!
-                <% end %>
-              </p>
-                <% else %>
-              <p>
-                <%= link_to user_post_favorites_path(posts), method: :post, remote: true do %>
-                  <i class="far fa-thumbs-up"></i><%= @post.favorites.count %> Nice!
-                <% end %>
-              </p>
-                <% end %>
+              <td id="favorite_buttons_<%= posts.id %>">
+                <%= render "user/favorites/favorite", post: posts %>
               </td>
 
               <td><i class="fas fa-comments"></i> <%= link_to "#{@post.post_comments.count}", user_post_path(posts) %></td>

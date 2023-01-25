@@ -5,11 +5,13 @@
       <table class='table table-inverse'>
         <tbody>
       　　<% @users.each do |user| %>
-          <tr>
-            <td><%= image_tag user.get_image, size:"100x100" %></td>
-            <td><%= link_to user.name, user_user_path(user.id) %></td>
-            <td><%= user.introduction %></td>
-          </tr>
+        　　<% unless user.name == "guestuser" %>
+          　　<tr>
+                <td><%= image_tag user.get_image, size:"100x100" %></td>
+                <td><%= link_to user.name, user_user_path(user.id) %></td>
+                <td><%= user.introduction %></td>
+              </tr>
+        　　<% end %>
           <% end %>
         </tbody>
       </table>
