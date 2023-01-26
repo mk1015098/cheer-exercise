@@ -75,8 +75,8 @@ class User::PostsController < ApplicationController
   end
 
   def correct_user
-    @book = Book.find(params[:id])
-    @user = @book.user
-    redirect_to(books_path) unless @user == current_user
+    @post = Post.find(params[:id])
+    @user = @post.user
+    redirect_to(user_posts_path) unless @user == current_user
   end
 end
