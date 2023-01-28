@@ -12,7 +12,8 @@ class User::PostsController < ApplicationController
   def index
     @posts = Post.page(params[:page])
     @tag_list=Tag.all
-    @post = Post.new
+    @post = Post.all
+    @post_comments = PostComment.all
     @user = current_user
   end
 

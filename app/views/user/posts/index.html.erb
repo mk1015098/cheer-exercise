@@ -24,7 +24,7 @@
                 <%= render "user/favorites/favorite", post: posts %>
               </td>
 
-              <td><i class="fas fa-comments"></i> <%= link_to "#{@post.post_comments.count}", user_post_path(posts) %></td>
+              <td><i class="fas fa-comments"></i> <%= link_to "#{posts.post_comments.count}", user_post_path(posts) %></td>
             </tr>
           <% end %>
         </tbody>
