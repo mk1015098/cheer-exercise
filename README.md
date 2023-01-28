@@ -19,7 +19,8 @@
 - 同じ運動仲間と交流したいとき
 
 ## 設計書
-
+- テーブル定義書　https://docs.google.com/spreadsheets/d/1ih29Chft8LQ_buy8cC4oqXb65hv-Fp-KDpnaU6JJRfU/edit?usp=sharing
+- ER図　https://drive.google.com/file/d/1aiazsBtO6Z5Z8C9NogpsDwEWAODYe2QL/view?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -31,3 +32,5 @@
 ## 使用素材
 - ロゴデザイン『Canva』 https://www.canva.com
 - アイコンデザイン 『Font Awesome』 https://fontawesome.com
+- 写真　『photoAC』 https://www.photo-ac.com
+- イラスト『illustAC』 https://www.ac-illust.com
