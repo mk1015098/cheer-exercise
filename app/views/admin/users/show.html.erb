@@ -3,10 +3,10 @@
     <div class='col-md-4'>
       <h1 style= "font-family: fantasy">User Details</h1>
       <div>
-        <p><%= image_tag @user.get_image, size:"200x200" %></p>
+        <p><%= image_tag @user.get_image, class: "rounded-circle", size:"200x200" %></p>
         <p class='h4'>Name：<%= @user.name %></p>
         <p><%= @user.introduction %></p>
-        <%= link_to "ユーザーを削除する", admin_user_path(@user.id), method: :delete, "data-confirm" => "本当にこのユーザーを削除しますか？" %>
+        <%= link_to "ユーザーを削除する", admin_user_path(@user.id), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当にこのユーザーを削除しますか？" %>
       </div>
     </div>
 
@@ -17,7 +17,7 @@
           <% @posts.each do |posts| %>
           <tr>
             <td><%= link_to posts.body, admin_post_path(posts.id) %></td>
-            <td><i class="fas fa-comments"></i> <%= link_to "#{@post.post_comments.count}", admin_post_path(posts) %></td>
+            <td><i class="fas fa-comments"></i> <%= link_to "#{posts.post_comments.count}", admin_post_path(posts) %></td>
           </tr>
           <% end %>
         </tbody>

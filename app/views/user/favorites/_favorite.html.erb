@@ -5,7 +5,7 @@
   <%= post.favorites.count %> Nice!
 <% else %>
   <%= link_to user_post_favorites_path(post.id), method: :post, remote: true do %>
-    <i class="far fa-thumbs-up"></i>
+    <i class="far fa-thumbs-up" style="color: orange;"></i>
   <% end %>
   <%= post.favorites.count %> Nice!
 <% end %>

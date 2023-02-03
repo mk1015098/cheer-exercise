@@ -7,14 +7,14 @@
       <tbody>
         <% @posts.each do |post| %>
           <tr>
-            <td><%= image_tag post.user.get_image, size:"100x100" %></td>
-            <td><%= post.user.name %></td>
-            <td><%= post.body %></td>
-            <td>
-              <% post.tags.each do |tag| %>
-                <%= tag.name %>
-              <% end %>
+            <td><%= image_tag post.user.get_image, class: "rounded-circle", size:"80x80" %></td>
+            <td><%= link_to post.user.name, user_user_path(post.user) %></td>
+            <td><%= link_to post.body, user_post_path(post.id) %></td>
+            <td><i class="fas fa-tag"></i> <%= post.tags.map(&:name).join(', ') %></td>
+            <td id="favorite_buttons_<%= post.id %>">
+              <%= render "user/favorites/favorite", post: post %>
             </td>
+            <td><i class="fas fa-comments"></i> <%= link_to "#{post.post_comments.count}", user_post_path(post) %></td>
           </tr>
         <% end %>
       </tbody>

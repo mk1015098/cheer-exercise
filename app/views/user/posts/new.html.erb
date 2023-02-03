@@ -8,7 +8,7 @@
             <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p>
           </div>
         <% end %>
-        <p><%= image_tag current_user.get_image, size:"200x200" %></p>
+        <p><%= image_tag current_user.get_image, class: "rounded-circle", size:"200x200" %></p>
         <p>User Name：<%= current_user.name %></p>
         <p>Message：<%= current_user.introduction %></p>
       </div>

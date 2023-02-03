@@ -2,18 +2,22 @@
   <div class='row'>
     <div class='col-md-12'>
       <h1 style= "font-family: fantasy">Nice! List</h1>
-        <table class='table table-inverse'>
-          <tbody>
-            <% @favorite_posts.each do |post|%>
-              <tr>
-                <td><%= image_tag post.user.get_image, size:"100x100" %></td>
-                <td><%= link_to post.user.name, user_user_path(post.user) %></td>
-                <td><%= link_to post.body, user_post_path(post.id) %></td>
-                <td><i class="fas fa-tag"></i> <%= post.tags.map(&:name).join(', ') %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+      <table class='table table-inverse'>
+        <tbody>
+          <% @favorite_posts.each do |post|%>
+            <tr>
+              <td><%= image_tag post.user.get_image, class: "rounded-circle", size:"50x50" %></td>
+              <td><%= link_to post.user.name, user_user_path(post.user) %></td>
+              <td><%= link_to post.body, user_post_path(post.id) %></td>
+              <td><i class="fas fa-tag"></i> <%= post.tags.map(&:name).join(', ') %></td>
+              <td id="favorite_buttons_<%= post.id %>">
+                <%= render "user/favorites/favorite", post: post %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to "Back", new_user_post_path %>
     </div>
   </div>
 </div>

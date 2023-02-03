@@ -15,15 +15,13 @@
         <tbody>
           <% @posts.each do |posts| %>
             <tr>
-              <td><%= image_tag posts.user.get_image, size:"100x100" %></td>
+              <td><%= image_tag posts.user.get_image, class: "rounded-circle", size:"80x80" %></td>
               <td><%= link_to posts.user.name, user_user_path(posts.user) %></td>
               <td><%= link_to posts.body, user_post_path(posts.id) %></td>
               <td><i class="fas fa-tag"></i> <%= posts.tags.map(&:name).join(', ') %></td>
-
               <td id="favorite_buttons_<%= posts.id %>">
                 <%= render "user/favorites/favorite", post: posts %>
               </td>
-
               <td><i class="fas fa-comments"></i> <%= link_to "#{posts.post_comments.count}", user_post_path(posts) %></td>
             </tr>
           <% end %>

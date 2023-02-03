@@ -6,7 +6,7 @@
         <tbody>
       　　<% @users.each do |user| %>
           <tr>
-            <td><%= image_tag user.get_image, size:"100x100" %></td>
+            <td><%= image_tag user.get_image, class: "rounded-circle", size:"80x80" %></td>
             <td><%= link_to user.name, admin_user_path(user.id) %></td>
             <td><%= user.introduction %></td>
           </tr>

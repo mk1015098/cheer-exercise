@@ -6,7 +6,7 @@
         <tbody>
           <% @posts.each do |posts| %>
             <tr>
-              <td><%= image_tag posts.user.get_image, size:"100x100" %></td>
+              <td><%= image_tag posts.user.get_image, class: "rounded-circle", size:"80x80" %></td>
               <td><%= link_to posts.user.name, admin_user_path(posts.user) %></td>
               <td><%= link_to posts.body, admin_post_path(posts.id) %></td>
               <td><i class="fas fa-tag"></i><%= posts.tags.map(&:name).join(', ') %></td>
@@ -15,6 +15,7 @@
           <% end %>
         </tbody>
       </table>
+      <%= paginate @posts %>
     </div>
   </div>
 </div>
