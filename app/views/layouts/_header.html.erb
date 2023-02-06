@@ -5,6 +5,9 @@
 
         <ul class="navbar-nav m-3 h5" style= "font-family: fantasy">
           <% if user_signed_in? %>
+            <li class="nav-item m-3 mr-5">
+              <mark>″<%= current_user.name %>″さんでログインしています！</mark>
+            </li>
             <li class="m-3">
               <%= link_to "My page", new_user_post_path(current_user), class: 'text-dark align-middle' %>
             </li>
