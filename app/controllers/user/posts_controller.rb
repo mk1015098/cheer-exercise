@@ -1,4 +1,5 @@
 class User::PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
 
   def show
@@ -27,6 +28,8 @@ class User::PostsController < ApplicationController
     @post = Post.new(body: post_params[:body])
     @post.user_id = current_user.id
     @post.start_time = Date.today
+    @posts = Post.all
+    @user = current_user
     @tag_list = params[:post][:name].split(',')
     if @post.save
       @post.save_tag(@tag_list)

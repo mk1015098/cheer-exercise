@@ -13,10 +13,10 @@
         <p>Message：<%= current_user.introduction %></p>
       </div>
       <% if @user.name != "guestuser" %>
-      <div>
-        <i class="fas fa-pencil-alt"></i><%=link_to"User Edit", edit_user_user_path(current_user) %><br>
-        <i class="fas fa-thumbs-up"></i><%=link_to"Nice! List", favorites_user_post_path(current_user) %>
-      </div>
+        <div>
+          <i class="fas fa-pencil-alt"></i><%=link_to"User Edit", edit_user_user_path(current_user) %><br>
+          <i class="fas fa-thumbs-up"></i><%=link_to"Nice! List", favorites_user_post_path(current_user) %>
+        </div>
       <% end %>
 
       <br><h4 style= "font-family: fantasy">New Post</h4>
@@ -35,7 +35,7 @@
     <div class='col-md-8'>
       <h4 style= "font-family: fantasy">My Calendar</h4>
       <p>一日一回運動後に投稿した日はアイコンが表示されます！</p>
-      <%= month_calendar  events: @posts do |date,posts| %>
+      <%= month_calendar events: @posts do |date,posts| %>
         <%= date.day %>
         <% posts.each do |post| %>
           <% if post.body.present? %>
