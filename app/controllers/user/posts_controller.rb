@@ -2,14 +2,6 @@ class User::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
 
-  def show
-    @post = Post.find(params[:id])
-    @posts = Post.all
-    @post_tags = @post.tags
-    @user = @post.user
-    @post_comment = PostComment.new
-  end
-
   def index
     @posts = Post.page(params[:page])
     @tag_list=Tag.all
@@ -18,10 +10,23 @@ class User::PostsController < ApplicationController
     @user = current_user
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @posts = Post.all
+    @post_tags = @post.tags
+    @user = @post.user
+    @post_comment = PostComment.new
+  end
+
   def new
     @post = Post.new
     @user = current_user
     @posts = @user.posts
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def create
@@ -37,11 +42,6 @@ class User::PostsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
-    @post = Post.find(params[:id])
-    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def update

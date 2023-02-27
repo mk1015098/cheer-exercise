@@ -2,14 +2,14 @@ class User::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit, :update]
 
+  def index
+    @users = User.page(params[:page])
+  end
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
     @post = Post.new
-  end
-
-  def index
-    @users = User.page(params[:page])
   end
 
   def edit
